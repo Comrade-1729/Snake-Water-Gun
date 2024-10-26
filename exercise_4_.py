@@ -5,9 +5,11 @@ import random
 import string
 
 def random_letters(n=6):
+    ''' Function to pick 6 Random letters '''
     return ''.join(random.choice(string.ascii_letters) for _ in range(n))
 
 def code_word(word):
+    ''' Function to Code a Word '''
     if len(word) == 1:
         return word
     elif len(word) == 2:
@@ -17,6 +19,7 @@ def code_word(word):
         return random_three[:3] + word[1:] + word[0] + random_three[3:]
 
 def decode_word(word):
+    ''' Function to Decode a word '''
     if len(word) == 1:
         return word
     elif len(word) == 2:
@@ -26,6 +29,7 @@ def decode_word(word):
     return None
 
 def process_string(strng, mode):
+    ''' Function to Complete the resultant String '''
     words = strng.split()
     if mode == 'C':
         return ' '.join(code_word(word) for word in words)
@@ -34,12 +38,15 @@ def process_string(strng, mode):
         if None in decoded:
             return f"{strng} is an Invalid String to Decode :("
         return ' '.join(decoded)
-
-while True:
-    mode = input("Enter 'C' for Code, 'D' for Decode: ").upper()
-    if mode not in ['C', 'D']:
-        print(f"{mode} is an Invalid Input :(")
-        break
-    strng = input("Enter a String: ").strip()
-    result = process_string(strng, mode)
-    print(result)
+def main():
+    ''' The Main Function '''
+    while True:
+        mode = input("Enter 'C' for Code, 'D' for Decode: ").upper()
+        if mode not in ['C', 'D']:
+            print(f"{mode} is an Invalid Input :(")
+            break
+        strng = input("Enter a String: ").strip()
+        result = process_string(strng, mode)
+        print(result)
+if __name__ == '__main__':
+    main()
